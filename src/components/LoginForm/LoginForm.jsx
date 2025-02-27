@@ -2,8 +2,14 @@ import css from "./LoginForm.module.css";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { TextField } from "@mui/material";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { loginThunk } from "../../redux/auth/operations";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function LoginForm() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const initialValues = {
     email: "",
     password: "",
@@ -17,7 +23,13 @@ export default function LoginForm() {
   });
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    dispatch(loginThunk(values))
+      .unwrap()
+      .then((response) => {
+        toast.success(`Welcome, ${response.user.name}`);
+        navigate("/contacts", { replace: true });
+      })
+      .catch(() => toast.error("Invalid data"));
     actions.resetForm();
   };
   return (

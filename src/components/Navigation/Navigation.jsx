@@ -11,6 +11,9 @@ export default function Navigation() {
       <NavLink to="/" className={linkStyle}>
         Home
       </NavLink>
+      <NavLink to="/contacts" className={linkStyle}>
+        Contacts
+      </NavLink>
       <NavLink to="/register" className={linkStyle}>
         Register
       </NavLink>

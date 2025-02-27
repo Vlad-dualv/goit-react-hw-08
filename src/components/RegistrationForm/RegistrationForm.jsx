@@ -2,15 +2,19 @@ import css from "./RegistrationForm.module.css";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { TextField } from "@mui/material";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { registerThunk } from "../../redux/auth/operations";
+import toast from "react-hot-toast";
 
 export default function RegistrationForm() {
+  const dispatch = useDispatch();
   const initialValues = {
-    username: "",
+    name: "",
     email: "",
     password: "",
   };
   const Validation = Yup.object().shape({
-    username: Yup.string()
+    name: Yup.string()
       .min(3, "Too short!")
       .max(20, "Too long!")
       .required("Required"),
@@ -22,7 +26,12 @@ export default function RegistrationForm() {
   });
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    dispatch(registerThunk(values))
+      .unwrap()
+      .then(() => {
+        toast.success("Account created");
+      })
+      .catch(() => toast.error("Registration failed. Please, try again"));
     actions.resetForm();
   };
   return (
@@ -32,13 +41,8 @@ export default function RegistrationForm() {
       onSubmit={handleSubmit}
     >
       <Form className={css.form}>
-        <Field
-          as={TextField}
-          variant="standard"
-          label="Username"
-          name="username"
-        />
-        <ErrorMessage name="username" component="span" className={css.error} />
+        <Field as={TextField} variant="standard" label="Username" name="name" />
+        <ErrorMessage name="name" component="span" className={css.error} />
         <Field
           as={TextField}
           variant="standard"
