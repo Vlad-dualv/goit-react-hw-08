@@ -12,8 +12,13 @@
     "postgit": "git push --all"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@fontsource/roboto": "^5.1.1",
+    "@mui/material": "^6.4.6",
     "@reduxjs/toolkit": "^2.5.0",
     "axios": "^1.7.9",
+    "clsx": "^2.1.1",
     "formik": "^2.4.6",
     "modern-normalize": "^3.0.1",
     "nanoid": "^5.0.9",

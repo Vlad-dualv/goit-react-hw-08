@@ -1,0 +1,17 @@
+.links {
+  display: flex;
+  gap: 30px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: bisque;
+}
+
+.active {
+  color: bisque;
+}
