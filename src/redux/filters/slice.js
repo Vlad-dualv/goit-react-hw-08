@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const filtersInitialState = {
   name: "",
+  number: "",
 };
 
 const filterSlice = createSlice({
